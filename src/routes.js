@@ -8,12 +8,14 @@ import  Hortalica  from "./pages/Hortalica";
 import  Outro from "./pages/Outro";
 import  Paginapd  from "./pages/Paginapd";
 
+
 import  Carrinho  from "./pages/Carrinho";
 import  Login  from "./pages/Login";
 
 import  Header  from "./conponents/Header";
 import  Footer  from "./conponents/Footer";
-import SearchResults from './conponents/SearchResults';
+import SearchResults from './pages/SearchResults';
+
 
 function RoutesApp(){   
     return(
@@ -27,7 +29,7 @@ function RoutesApp(){
                 <Route path="/Legume" element={<Legume />} />
                 <Route path="/Hortalica" element={<Hortalica />} />
                 <Route path="/Outro" element={<Outro />} />
-                <Route path="/Paginapd" element={<Paginapd />} />
+                <Route path="/Paginapd/:id" element={<Paginapd />} />
                 <Route path="/Carrinho" element={<Carrinho />} />
                 <Route path="/Login" element={<Login />} />
                 <Route path="/search/:query" element={<SearchResults />} />

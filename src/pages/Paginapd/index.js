@@ -2,8 +2,9 @@ import 'bootstrap';
 import { data } from '../../data';
 
 function Paginapd() {
-  const product = data.getProduct(); // assume Data.getProduct() returns an object with product info
-  const relatedProducts = data.getRelatedProducts(); // assume Data.getRelatedProducts() returns an array of related products
+  console.log('data:', data);
+  const product = data.getProduct();
+  const relatedProducts = data.getRelatedProducts();
 
   return (
     <div>

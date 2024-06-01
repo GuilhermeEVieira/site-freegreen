@@ -3,7 +3,7 @@ import 'bootstrap';
 import { data } from '../../data';
 
 function Verduras() {
-  const verdura = data.filter(product => product.type === 'verduras');
+  const verduraa = data.filter(product => product.type === 'verdura');
 
   return (
     <div>
@@ -15,7 +15,7 @@ function Verduras() {
       <main className="row produto-page">
         <div className="col-12">
           <div className="row">
-            {verdura.map((product, index) => (
+            {verduraa.map((product, index) => (
               <div key={index} className="produto-container-prisncipal">
                 <div className="produto-prisncipal">
                   <Link to={`/paginapd/${product.id}`} >

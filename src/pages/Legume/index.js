@@ -3,7 +3,7 @@ import 'bootstrap';
 import { data } from '../../data';
 
 function Legume() {
-  const legumes = data.filter(product => product.type === 'legumes');
+  const legumes = data.filter(product => product.type === 'legume');
 
   return (
     <div>
