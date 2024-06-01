@@ -4,7 +4,7 @@ import { data } from '../../data';
 
 function SearchResults() {
   const searchQuery = window.location.pathname.split('/').pop();
-  const filteredData = data.filter((item) => item.type === 'fruta' && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  const filteredData = data.filter((item) => item.type === '' && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div className="container-carrinho">

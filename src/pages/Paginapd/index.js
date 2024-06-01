@@ -1,22 +1,30 @@
-import 'bootstrap';
+import React, { useState } from 'react';
+import { Carousel } from 'react-bootstrap';
 import { data } from '../../data';
+import { Link } from 'react-router-dom';
+
 
 function Paginapd() {
-  console.log('data:', data);
-  const product = data.getProduct();
-  const relatedProducts = data.getRelatedProducts();
+  const productId = 1; // replace this with the actual product id
+  const produto = data.find(product => product.id === productId);
+  const relatedProducts = data.filter(product => product.type === produto.type && product.id !== productId);
 
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
   return (
     <div>
       <div className="item-container">
         <div className="item-box">
           <div className="image-box">
-            <img src={`/imagens/${product.image}`} alt={product.name} />
+            <img src={produto.image} alt={produto.name} />
           </div>
           <div className="text-container">
-            <div className="category">{product.type}</div>
-            <div className="name">{product.name}</div>
-            <div className="price-porduto">R$ {product.price} Unidade</div>
+            <div className="category">{produto.type}</div>
+            <div className="name">{produto.name}</div>
+            <div className="price-porduto">R$ {produto.price} Unidade</div>
             <hr />
             <div className="button-container">
               <button className="buy-button">Comprar</button>
@@ -35,22 +43,22 @@ function Paginapd() {
         <div className="container align-self-center">
           <div className="row-product">
             <div className="col-md-12 banner-container">
-              <div id="carousel-feira" className="carousel slide" data-ride="carousel">
-                <div className="carousel-inner">
-                  {relatedProducts.map((product, index) => (
-                    <div key={index} className="carousel-item">
-                      <div className="produto-container-product">
-                        <div className="produto-product">
-                          <img src={`/imagens/${product.imagem}`} alt={product.nome} />
-                          <span>{product.nome}</span>
-                          <span>R$ <span className="price">{product.price}</span> <span className="unit">{product.unidade}</span></span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-              </div>
+              <Carousel activeIndex={index} onSelect={handleSelect}>
+                {relatedProducts.map((product, index) => (
+                  <Carousel.Item key={index}>
+                    <Link to={`/paginapd/${product.id}`} >
+                      <img src={product.image} alt={product.name} className="img-fluid" />
+                    </Link>
+                    <Carousel.Caption>
+                    <span>{product.name}</span>
+                    <span>
+                      R$ <span className="price">{product.price}</span> <span className="unit">{product.unit}</span>
+                    </span>
+                    
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                ))}
+              </Carousel>
             </div>
           </div>
         </div>
