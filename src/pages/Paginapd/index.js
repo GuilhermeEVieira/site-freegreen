@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { data } from '../../data';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 function Paginapd() {
-  const productId = 1; // replace this with the actual product id
+  const { id } = useParams(); 
+  const productId = parseInt(id); 
   const produto = data.find(product => product.id === productId);
   const relatedProducts = data.filter(product => product.type === produto.type && product.id !== productId);
 
@@ -43,22 +44,23 @@ function Paginapd() {
         <div className="container align-self-center">
           <div className="row-product">
             <div className="col-md-12 banner-container">
-              <Carousel activeIndex={index} onSelect={handleSelect}>
-                {relatedProducts.map((product, index) => (
-                  <Carousel.Item key={index}>
-                    <Link to={`/paginapd/${product.id}`} >
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+              <Carousel.Item style={{ width: '100%', display: 'flex', justifyContent: 'pace-between' }}>
+                {relatedProducts.slice(0, 3).map((product, index) => (
+                  <div key={index} style={{ flex: 1, margin: 10 }}>
+                    <div className="produto-product">
+                    <Link to={`/paginapd/${product.id}`}>
                       <img src={product.image} alt={product.name} className="img-fluid" />
                     </Link>
-                    <Carousel.Caption>
                     <span>{product.name}</span>
                     <span>
                       R$ <span className="price">{product.price}</span> <span className="unit">{product.unit}</span>
                     </span>
-                    
-                    </Carousel.Caption>
-                  </Carousel.Item>
+                    </div>
+                  </div>
                 ))}
-              </Carousel>
+              </Carousel.Item>
+            </Carousel>
             </div>
           </div>
         </div>
