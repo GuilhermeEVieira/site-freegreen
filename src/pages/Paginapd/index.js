@@ -50,7 +50,7 @@ function Paginapd() {
                   <div key={index} style={{ flex: 1, margin: 10 }}>
                     <div className="produto-product">
                     <Link to={`/paginapd/${product.id}`}>
-                      <img src={product.image} alt={product.name} className="img-fluid" />
+                    <img src={produto.image} alt={product.name} className="img-fluid"/>
                     </Link>
                     <span>{product.name}</span>
                     <span>
